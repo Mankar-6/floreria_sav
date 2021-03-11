@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<base href=".">
+<title> Verificación de formularios con Java Script</title>
+<style>
+
+ ul{
+ list-style:none;
+ }
+ form {
+  display: grid;
+  padding: 1em;
+  background: #f9f9f9;
+  border: 1px solid #c1c1c1;
+  margin: 2rem auto 0 auto;
+  max-width: 600px;
+  padding: 1em;
+}
+form input {
+  background: #fff;
+  border: 1px solid #9c9c9c;
+}
+form button {
+  background: black;
+  padding: 0.7em;
+  width: 50%;
+  height: 20%;
+  border: 0;
+  margin-left: 100px;
+  margin-top: 130px;
+  color: white;
+}
+form button:hover {
+  background:gray;
+}
+
+label {
+  padding: 0.5em 0.5em 0.5em 0;
+}
+
+input {
+  padding: 0.7em;
+  margin-bottom: 0.5rem;
+}
+input:focus {
+  outline: 3px solid violet;
+}
+
+@media (min-width: 400px) {
+  form {
+    grid-template-columns: 200px 1fr;
+    grid-gap: 16px;
+  }
+
+  label {
+    text-align: right;
+    grid-column: 1 / 2;
+  }
+
+  input,
+  button {
+    grid-column: 2 / 3;
+  }
+}
+
+</style>
+ </head>
+
+ <body>
+
+<form name="form1" onsubmit="return validar();">
+ <ul>
+ <li>
+ <label for="nombre">Nombre</label>
+ <input type="text" name="nombre" id="nombre" placeholder="Ingresa tu Nombre">
+ </li>
+ <li>
+ <label for="direccion">Direccion</label>
+ <input type="text" name="direccion" id="direccion" placeholder="Ingresa tu direccion">
+ </li>
+ <li>
+ <label for="numero">Numero</label>
+ <input type="text" name="numero" id="numero" placeholder="Ingresa tu telefono">
+ </li>
+ <li>
+ <label for="email">E-mail</label>
+ <input type="text" name="email" id="email" placeholder="Ingresa tu correo">
+ </li>
+<li>
+ <label for="interes">Interes</label>
+ <select id="interes" name="interes">
+<option value="">Seleccione</option>
+<option>Ninguno</option>
+<option>Flores</option>
+<option>Regalos</option>
+<option>Decoraciones</option>
+<option>Accesorios</option>
+</select>
+ </li>
+<li>
+ <label>
+ <input type="checkbox" value="SI" id="acepto">
+He leido y acepto las condiciones.
+</label>
+ </li>
+ </ul>
+ <button style="font-size: 1.5em;">Registrarse</button>
+</form>
+ <script type="text/javascript">
+function validar(){
+var todo_correcto = true;
+if(document.getElementById('nombre').value.length < 2 ){
+ todo_correcto = false;
+}
+if(document.getElementById('direccion').value.length < 10 ){
+ todo_correcto = false;
+}
+if(isNaN(document.getElementById('numero').value)){
+ todo_correcto = false;
+}
+var expresion = /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
+var email = document.form1.email.value;
+if (!expresion.test(email)){
+todo_correcto = false;
+}
+if(document.getElementById('interes').value == ''){
+ todo_correcto = false;
+}
+if(!document.getElementById('acepto').checked){
+ todo_correcto = false;
+}
+if(!todo_correcto){
+ alert('Algunos campos no están correctos, vuelva a revisarlos');
+}
+return todo_correcto;
+}
+ </script>
+
+</body></html>
